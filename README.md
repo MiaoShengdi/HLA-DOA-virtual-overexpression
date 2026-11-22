@@ -163,21 +163,3 @@ GPL-3.0. See `LICENSE`.
 ## Contact
 
 Miao Shengdi, miaoshengdi@hunnu.edu.cn
-
----
-
-## 中文说明
-
-- `scripts/01_run_virtual_overexpression.R` 顶部的设置块是唯一需要改的地方：
-  `DATA_FILE`（Seurat 对象路径）、`TARGET_GENE`、`CELL_TYPE`、`FOLD`。
-- `R/pipeline.R` 里第 5 步的 `perturb_network()` 就是"扰动"的全部：`mode = "gain"`
-  时把靶基因的出边乘 `fold`，`mode = "loss"` 时清零；输入表达矩阵在整个流程中不变。
-- 代码不包含、也不再依赖任何第三方修改版 `scTenifoldKnk`，只调用公开的
-  `scTenifoldNet`；质控、扰动、差异调控统计三步在本仓库内实现，可逐行核对。
-- 统计量与参考实现的 `distance / Z / FC / p.value / p.adj` 逐列差值为 0，
-  细胞筛选结果完全一致（见 README 的 verification 段）。
-- 报告结果基于 **scTenifoldNet 1.3**。1.4.3 重写了建网算法（主成分回归换了求解器），
-  两版数值不可混用；需要复现本稿数字请装 1.3。仓库代码在 1.3 与 1.4.3 上均可直接运行，
-  冒烟测试两版各 8 项断言全部通过。
-- 正文/答复信里应写成 scTenifoldNet v1.3，而不是 v1.4.3；实际运行的版本由
-  `results/run_parameters.txt` 自动记录，二者必须一致。
