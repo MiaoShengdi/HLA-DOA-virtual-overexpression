@@ -92,6 +92,29 @@ Smoke test on a synthetic matrix (no data needed):
 Rscript tests/test_pipeline_synthetic.R
 ```
 
+## Settings used for the reported analysis
+
+| Setting | Value |
+| --- | --- |
+| Cells | control-group macrophages |
+| Genes | 10,000 highly variable genes (vst) plus the target gene |
+| Cell filter | library size >= 1,000 counts, mitochondrial fraction <= 0.1 |
+| Gene filter | none (`MIN_CELLS = 0`) |
+| Networks | 10, from 500-cell subsamples |
+| Regression | 3 principal components, `q = 0.9` (top 10% of edges kept) |
+| Tensor | `K = 3`, max error 1e-5, 1,000 iterations, 3 decimals |
+| Directional pruning | off (`lambda = 0`) |
+| Embedding | 2 dimensions |
+| Perturbation | outgoing edges of HLA-DOA multiplied by 2 |
+| Test | chi-square on squared displacement, Benjamini-Hochberg FDR < 0.05 |
+| Seed | 123 |
+| scTenifoldNet | 1.3 |
+
+The gene filter is deliberately set to zero: the reference implementation
+computes a per-gene detection filter but never assigns the result, so the
+analysis it performs applies no gene filter. Writing `MIN_CELLS = 0` records
+that behaviour instead of hiding it behind a default.
+
 ## Outputs (`results/`)
 
 | File | Content |

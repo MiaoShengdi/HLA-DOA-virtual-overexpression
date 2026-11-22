@@ -27,7 +27,11 @@ GROUP_KEEP      <- "Control"        # the perturbation starts from the WT group
 N_FEATURES      <- 10000            # highly variable genes (vst)
 MIN_LIBRARY     <- 1000             # cells with fewer counts are dropped
 MT_THRESHOLD    <- 0.1              # maximum mitochondrial fraction
-MIN_CELLS       <- 0                # genes detected in fewer cells are dropped
+MIN_CELLS       <- 0                # genes detected in fewer cells are dropped;
+                                    # 0 = no gene filter, which is what the
+                                    # reference implementation actually does
+                                    # (it computes the filter but discards the
+                                    # result), stated here explicitly
 
 N_NET           <- 10               # networks built from cell subsamples
 N_CELLS         <- 500              # cells per network
