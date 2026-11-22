@@ -160,6 +160,10 @@ identical output tables.
 
 GPL-3.0. See `LICENSE`.
 
+## Contact
+
+Miao Shengdi, miaoshengdi@hunnu.edu.cn
+
 ---
 
 ## 中文说明
